@@ -69,11 +69,12 @@ App = {
       contractInstance = instance;
 
       contractInstance.name().then(name => {
+        $("title").text(`${name} Token Exchange`);
         $("h1").text(`${name} Token Exchange`);
       });
 
       contractInstance.symbol().then(symbol => {
-        $("h3").text(`${symbol} ETH exhange`);
+        $("h3").text(`${symbol} - ETH exhange`);
       });
     });
   },
