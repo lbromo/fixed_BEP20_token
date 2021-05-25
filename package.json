@@ -19,6 +19,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "lite-server": "^2.6.1",
-    "openzeppelin-solidity": "^4.1.0"
+    "openzeppelin-solidity": "^4.1.0",
+    "truffle-hdwallet-provider": "^1.0.17"
   }
 }

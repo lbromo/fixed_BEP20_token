@@ -1,5 +1,5 @@
 const FixedToken = artifacts.require("FixedToken");
 
 module.exports = function(deployer) {
-  deployer.deploy(FixedToken, "Bromos€", "B€", 1);
+  deployer.deploy(FixedToken, "Bromos€", "B€", 1337001337);
 };

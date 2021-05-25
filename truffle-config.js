@@ -1,24 +1,22 @@
+var HDWalletProvider = require("truffle-hdwallet-provider");
+const PRIVATE_KEY = process.env.PRIVATE_KEY;
+const PROJECT_ID = process.env.PROJECT_ID
+
 module.exports = {
-  // Uncommenting the defaults below 
-  // provides for an easier quick-start with Ganache.
-  // You can also follow this format for other networks;
-  // see <http://truffleframework.com/docs/advanced/configuration>
-  // for more details on how to specify configuration options!
-  //
   networks: {
     development: {
       host: "127.0.0.1",
       port: 7545,
       network_id: "*"
-    }
+    },
+    
+    ropsten: {
+      provider: () => {
+        return new HDWalletProvider(PRIVATE_KEY, `https://ropsten.infura.io/v3/${PROJECT_ID}`)
+      },
+      network_id: 3
+    },
   },
-  //  test: {
-  //    host: "127.0.0.1",
-  //    port: 7545,
-  //    network_id: "*"
-  //  }
-  //}
-  //
 
   compilers: {
     solc: {
