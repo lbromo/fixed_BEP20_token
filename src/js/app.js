@@ -43,7 +43,7 @@ App = {
   },
 
   initContract: function() {
-    $.getJSON('../build/contracts/FixedToken.json', function(data) {
+    $.getJSON('FixedToken.json', function(data) {
       // Get the necessary contract artifact file and instantiate it with @truffle/contract
       var FixedTokenArtifact = data;
       App.contracts.FixedToken = TruffleContract(FixedTokenArtifact);
