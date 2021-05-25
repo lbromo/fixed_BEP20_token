@@ -9,4 +9,8 @@ app.get('/', function(req, res) {
     res.sendFile('src/index.html');
 });
 
-app.listen(80);
+const PORT = process.env.PORT || 3000;
+app.listen(port, err => {
+    if(err) throw err;
+    console.log("%c Server running", "color: green");
+});
