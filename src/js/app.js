@@ -101,8 +101,7 @@ App = {
           contractInstance.symbol().then(symbol => {
             var tokens = prompt(`${name} tokens to buy\n ${tokens_per_eth} ${symbol} : 1 ETH`, "0");
             var eth_price = tokens / tokens_per_eth;
-    
-            contractInstance.buy({from: account, value: web3.toWei(eth_price, 'ether')})
+            contractInstance.buy({from: account, value: Math.round(web3.toWei(eth_price, 'ether'))})
           });
         });
       });
