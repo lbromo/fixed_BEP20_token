@@ -282,11 +282,11 @@ contract BEP20Token is Context, IBEP20, Ownable {
     
   function sell(uint256 amount) public {
     uint256 eth_balance = address(this).balance;
-    uint256 eth_to_sell = SafeMath.mul(SafeMath.div(amount, _token_per_eth), 1 ether);
+    uint256 eth_to_sell = SafeMath.div(SafeMath.mul(amount, 1 ether), _token_per_eth);
         
     require(eth_balance >= eth_to_sell, "Not enough ETH in contract");
 
-    _burn(msg.sender, SafeMath.mul(amount, 10^_decimals));
+    _burn(msg.sender, SafeMath.mul(amount, 1 ether));
     msg.sender.transfer(eth_to_sell);
     emit Sold(amount);
   }
