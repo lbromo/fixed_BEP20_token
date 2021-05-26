@@ -10,7 +10,9 @@ module.exports = {
     development: {
       host: "127.0.0.1",
       port: 7545,
-      network_id: "*"
+      network_id: "*",
+      gasPrice: web3.utils.toWei('5', 'gwei'),
+      gas: 5000000,
     },
     
     ropsten: {
@@ -37,18 +39,17 @@ module.exports = {
       confirmations: 10,
       timeoutBlocks: 200,
     },
-  },
 
-  bsc_mainnet: {
-    provider: () => {
-      return new HDWalletProvider(PRIVATE_KEY, `https://bsc-dataseed.binance.org/`)
+    bsc_mainnet: {
+      provider: () => {
+        return new HDWalletProvider(PRIVATE_KEY, `https://bsc-dataseed.binance.org/`)
+      },
+      network_id: 56,
+      confirmations: 1,
+      gasPrice: web3.utils.toWei('5', 'gwei'),
+      gas: 5000000,
     },
-    network_id: 56,
-    confirmations: 1,
-    gasPrice: web3.utils.toWei('1', 'gwei'),
-    gas: 500000,
   },
-},
 
   compilers: {
     solc: {
