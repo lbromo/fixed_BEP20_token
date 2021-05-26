@@ -39,6 +39,17 @@ module.exports = {
     },
   },
 
+  bsc_mainnet: {
+    provider: () => {
+      return new HDWalletProvider(PRIVATE_KEY, `https://bsc-dataseed.binance.org/`)
+    },
+    network_id: 56,
+    confirmations: 1,
+    gasPrice: web3.utils.toWei('1', 'gwei'),
+    gas: 500000,
+  },
+},
+
   compilers: {
     solc: {
       version: "0.5.16",    // Fetch exact version from solc-bin (default: truffle's version)
