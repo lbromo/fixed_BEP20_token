@@ -43,13 +43,13 @@ App = {
   },
 
   initContract: function() {
-    $.getJSON('FixedToken.json', function(data) {
+    $.getJSON('BEP20Token.json', function(data) {
       // Get the necessary contract artifact file and instantiate it with @truffle/contract
-      var FixedTokenArtifact = data;
-      App.contracts.FixedToken = TruffleContract(FixedTokenArtifact);
+      var contract = data;
+      App.contracts.tokenContract = TruffleContract(contract);
     
       // Set the provider for our contract
-      App.contracts.FixedToken.setProvider(App.web3Provider);
+      App.contracts.tokenContract.setProvider(App.web3Provider);
     
       // Use our contract to retrieve and mark the adopted pets
       return App.annotate();
@@ -65,7 +65,7 @@ App = {
 
   annotate: function(){
     var contractInstance;
-    App.contracts.FixedToken.deployed().then(function(instance) {
+    App.contracts.tokenContract.deployed().then(function(instance) {
       contractInstance = instance;
 
       contractInstance.name().then(name => {
@@ -74,7 +74,7 @@ App = {
       });
 
       contractInstance.symbol().then(symbol => {
-        $("h3").text(`${symbol} - ETH exhange`);
+        $("h3").text(`${symbol} - BNB exhange`);
       });
     });
   },
@@ -90,7 +90,7 @@ App = {
       }
     
       var account = accounts[0];
-      App.contracts.FixedToken.deployed().then(instance => {
+      App.contracts.tokenContract.deployed().then(instance => {
         contractInstance = instance;
 
         return contractInstance.tokens_per_eth();
@@ -99,7 +99,7 @@ App = {
 
         contractInstance.name().then(name => {
           contractInstance.symbol().then(symbol => {
-            var tokens = prompt(`${name} tokens to buy\n ${tokens_per_eth} ${symbol} : 1 ETH`, "0");
+            var tokens = prompt(`${name} tokens to buy\n ${tokens_per_eth} ${symbol} : 1 BNB`, "0");
             var eth_price = tokens / tokens_per_eth;
             contractInstance.buy({from: account, value: Math.round(web3.toWei(eth_price, 'ether'))})
           });
@@ -119,7 +119,7 @@ App = {
       }
     
       var account = accounts[0];
-      App.contracts.FixedToken.deployed().then(instance => {
+      App.contracts.tokenContract.deployed().then(instance => {
         contractInstance = instance;
 
         return contractInstance.tokens_per_eth();
@@ -128,7 +128,7 @@ App = {
 
         contractInstance.name().then(name => {
           contractInstance.symbol().then(symbol => {
-            var tokens = prompt(`${name} tokens to sell\n ${tokens_per_eth} ${symbol} : 1 ETH`, "0");
+            var tokens = prompt(`${name} tokens to sell\n ${tokens_per_eth} ${symbol} : 1 BNB`, "0");
     
             contractInstance.sell(tokens, {from: account})
           });
